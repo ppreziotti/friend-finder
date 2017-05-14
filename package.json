@@ -1,0 +1,25 @@
+{
+  "name": "friend-finder",
+  "version": "1.0.0",
+  "description": "compatibility-based friend-finder site utilizing node.js and express servers",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ppreziotti/friend-finder.git"
+  },
+  "author": "Patrick Preziotti",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ppreziotti/friend-finder/issues"
+  },
+  "homepage": "https://github.com/ppreziotti/friend-finder#readme",
+  "dependencies": {
+    "body-parser": "^1.17.1",
+    "express": "^4.15.2",
+    "path": "^0.12.7"
+  }
+}
