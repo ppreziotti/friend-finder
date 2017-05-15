@@ -16,12 +16,12 @@
 
 			<form>
 			    <div class="form-group">
-			    	<label for="name">Name</label>
-			    	<input type="text" class="form-control" id="name" placeholder="Name">
+			    	<label for="name">Name:</label>
+			    	<input type="text" class="form-control" id="name">
 			    </div>
 			    <div class="form-group">
-			    	<label for="email">Email</label>
-			    	<input type="email" class="form-control" id="email" placeholder="Email">
+			    	<label for="photo">Link to your photo:</label>
+			    	<input type="text" class="form-control" id="photo">
 			    </div>
 			</form>
 
@@ -147,7 +147,7 @@
 				<input type="radio" name="answer" value="5">5 (Strongly Agree)
 			</form>
 
-		<button type="submit" class="btn btn-large">Submit</button>
+		<button id="submit" type="submit" class="btn btn-large">Submit</button>
 
 		<div id="bs-example-navbar-collapse-1" class="collapse navbar-collapse">
 			<ul class="nav navbar-nav navbar-left">
@@ -157,6 +157,24 @@
 		</div>
 
 	</div>
+
+	<script type="text/javascript">
+
+		var button1 = document.getElementById("submit");
+		button1.addEventListener("click", function() {
+			var name = document.getElementById("name").value;
+			console.log(name);
+			var answers = document.getElementsByName("answer");
+			var scores = [];
+			for (var i = 0; i < answers.length; i++) {
+				if (answers[i].checked) {
+					scores.push(answers[i].value);
+				}
+			}
+			console.log(scores);
+		});
+
+	</script>
 
 </body>
 </html>
