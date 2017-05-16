@@ -190,6 +190,11 @@
 					scoreDifArray.push(scoreDif);
 				}
 				console.log(scoreDifArray);
+				var minScoreDif = Math.min.apply(null, scoreDifArray);
+				console.log(minScoreDif);
+				var matchIndex = scoreDifArray.indexOf(minScoreDif);
+				var match = data[matchIndex];
+				console.log(match.name);
 			});
 		});
 		
