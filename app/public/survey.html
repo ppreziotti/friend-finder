@@ -5,6 +5,8 @@
     <title>Friend Finder Survey</title>
     <!-- Linking Bootstrap CDN -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery.js"></script>
 </head>
 <body>
 
@@ -151,8 +153,8 @@
 
 		<div id="bs-example-navbar-collapse-1" class="collapse navbar-collapse">
 			<ul class="nav navbar-nav navbar-left">
-				<li><a href="#">API Friends List</a></li>
-				<li><a href="#">GitHub Repo</a></li>
+				<li><a href="/api/friends">API Friends List</a></li>
+				<li><a href="https://github.com/ppreziotti/friend-finder">GitHub Repo</a></li>
 			</ul>
 		</div>
 
@@ -160,20 +162,37 @@
 
 	<script type="text/javascript">
 
-		var button1 = document.getElementById("submit");
-		button1.addEventListener("click", function() {
-			var name = document.getElementById("name").value;
+		$("#submit").on("click", function() {
+			var name = $("#name").value;
 			console.log(name);
 			var answers = document.getElementsByName("answer");
-			var scores = [];
+			var userScores = [];
 			for (var i = 0; i < answers.length; i++) {
 				if (answers[i].checked) {
-					scores.push(answers[i].value);
+					userScores.push(answers[i].value);
 				}
 			}
-			console.log(scores);
-		});
+			console.log(userScores);
 
+			var currentURL = window.location.origin;
+			$.ajax({
+				url: currentURL + "/api/friends", 
+				method: "GET"
+			}).done(function(data) {
+				console.log("URL: " + currentURL + "/api/friends");
+				var scoreDifArray = [];
+				for (var i = 0; i < data.length; i++) {
+					var scoreDif = 0;
+					for (var j = 0; j < data[i].scores.length; j++) {
+						scoreDif += Math.abs(parseInt(userScores[j]) - parseInt(data[i].scores[j]));
+					}
+					console.log(scoreDif);
+					scoreDifArray.push(scoreDif);
+				}
+				console.log(scoreDifArray);
+			});
+		});
+		
 	</script>
 
 </body>
