@@ -5,6 +5,8 @@
     <title>Friend Finder Survey</title>
     <!-- Linking Bootstrap CDN -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <!-- Linking CSS file -->
+    <link rel="stylesheet" type="text/css" href="css/style.css">
     <!-- jQuery -->
     <script src="https://code.jquery.com/jquery.js"></script>
 </head>
@@ -163,7 +165,7 @@
 
 			<!-- Modal content -->
 			<div class="modal-content">
-				<span class="close">&times;</span>
+				<span id="close">&times;</span>
 				<p id="modalPar">Some text in the Modal..</p>
 				<img id="matchImg">
 			</div>
@@ -172,95 +174,7 @@
 
 	</div>
 
-	<style>
-
-	.modal {
-	    display: none; /* Hidden by default */
-	    position: fixed; /* Stay in place */
-	    z-index: 1; /* Sit on top */
-	    left: 0;
-	    top: 0;
-	    width: 100%; /* Full width */
-	    height: 100%; /* Full height */
-	    overflow: auto; /* Enable scroll if needed */
-	    background-color: rgb(0,0,0); /* Fallback color */
-	    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
-	}
-
-	/* Modal Content/Box */
-	.modal-content {
-	    background-color: #fefefe;
-	    margin: 15% auto; /* 15% from the top and centered */
-	    padding: 20px;
-	    border: 1px solid #888;
-	    width: 80%; /* Could be more or less, depending on screen size */
-	}
-
-	/* The Close Button */
-	.close {
-	    color: #aaa;
-	    float: right;
-	    font-size: 28px;
-	    font-weight: bold;
-	}
-
-	.close:hover,
-	.close:focus {
-	    color: black;
-	    text-decoration: none;
-	    cursor: pointer;
-	}
-
-	</style>
-
-	<script type="text/javascript">
-
-		$("#submit").on("click", function() {
-			var name = $("#name").value;
-			console.log(name);
-			var answers = document.getElementsByName("answer");
-			var userScores = [];
-			for (var i = 0; i < answers.length; i++) {
-				if (answers[i].checked) {
-					userScores.push(answers[i].value);
-				}
-			}
-			console.log(userScores);
-
-			var currentURL = window.location.origin;
-			$.ajax({
-				url: currentURL + "/api/friends", 
-				method: "GET"
-			}).done(function(data) {
-				console.log("URL: " + currentURL + "/api/friends");
-				var scoreDifArray = [];
-				for (var i = 0; i < data.length; i++) {
-					var scoreDif = 0;
-					for (var j = 0; j < data[i].scores.length; j++) {
-						scoreDif += Math.abs(parseInt(userScores[j]) - parseInt(data[i].scores[j]));
-					}
-					console.log(scoreDif);
-					scoreDifArray.push(scoreDif);
-				}
-				console.log(scoreDifArray);
-				var minScoreDif = Math.min.apply(null, scoreDifArray);
-				console.log(minScoreDif);
-				var matchIndex = scoreDifArray.indexOf(minScoreDif);
-				var match = data[matchIndex];
-				console.log(match.name);
-				showModal();
-
-				function showModal() {
-					var modal = document.getElementById('myModal');
-					var span = document.getElementsByClassName("close")[0];
-					$("#modalPar").html("You matched with " + match.name + "!");
-					$("#matchImg").attr("src", match.photo);
-					modal.style.display = "block";	
-				}
-			});
-		});
-		
-	</script>
+	<script type="text/javascript" src="javascript/script.js"></script>
 
 </body>
 </html>

@@ -20,7 +20,7 @@ var friends = [{
 },
 {
 	name: "Lily Aldrin",
-	photo: "../images/lily_aldrin",
+	photo: "../images/lily_aldrin.jpg",
 	scores: ["2", "3", "3", "2", "3", "1", "2", "2", "4", "4"]
 }];
 
