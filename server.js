@@ -5,6 +5,7 @@ var path = require("path");
 var app = express();
 var PORT = process.env.PORT || 3000;
 
+// Using express to server static HTML/CSS files and images
 app.use(express.static(path.join(__dirname, "app/public")));
 
 app.use(bodyParser.json());

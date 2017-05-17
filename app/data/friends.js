@@ -5,17 +5,17 @@ var friends = [{
 },
 {
 	name: "Barney Stinson",
-	photo: "../images/barney_stinson",
+	photo: "../images/barney_stinson.jpg",
 	scores: ["5", "1", "2", "5", "1", "3", "5", "1", "1", "5"]
 },
 {
 	name: "Robin Scherbatsky",
-	photo: "../images/robin_scherbatsky",
+	photo: "../images/robin_scherbatsky.jpg",
 	scores: ["4", "2", "3", "3", "3", "1", "2", "2", "1", "5"]
 },
 {
 	name: "Marshall Eriksen",
-	photo: "../images/marshall_eriksen",
+	photo: "../images/marshall_eriksen.jpg",
 	scores: ["3", "4", "3", "2", "4", "5", "1", "5", "4", "2"]
 },
 {
