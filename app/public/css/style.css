@@ -36,3 +36,7 @@
     text-decoration: none;
     cursor: pointer;
 }
+
+#submit {
+    margin-top: 20px;
+}
