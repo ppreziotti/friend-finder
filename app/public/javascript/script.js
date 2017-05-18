@@ -1,5 +1,3 @@
-
-
 $("#submit").on("click", function() {
 	event.preventDefault();
 	var answers = document.getElementsByName("answer");
@@ -11,11 +9,15 @@ $("#submit").on("click", function() {
 	}
 
 	// Validation for name, photo link, and answers
-	if ($("#name").val() === "") {
-		alert("Please enter your name.");
+	var name = $("#name").val();
+	var photo = $("#photo").val();
+	var checkName = /^[A-Za-z\s]{3,20}$/;
+	var checkPhoto = /([a-z\-_0-9\/\:\.]*\.(jpg|jpeg|png|gif))/;
+	if (!checkName.test(name)) {
+      alert("Please double check your name to make sure it is valid.");
 	}
-	else if ($("#photo").val() === "") {
-		alert("Please enter the link to your photo.");
+	else if (!checkPhoto.test(photo)) {
+		alert("Please enter a valid link to your photo.");
 	}
 	else if (userScores.length < 10) {
 		alert("Please answer all questions.");
@@ -44,6 +46,7 @@ $("#submit").on("click", function() {
 		var minScoreDif = Math.min.apply(null, scoreDifArray);
 		var matchIndex = scoreDifArray.indexOf(minScoreDif);
 		var match = data[matchIndex];
+		console.log(match);
 
 		$.ajax({
 			url: currentURL + "/api/friends",
